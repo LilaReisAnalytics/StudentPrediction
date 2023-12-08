@@ -1,0 +1,14 @@
+.form-container {
+    display: flex:0;
+    flex-wrap: wrap;
+}
+
+.form-column {
+    flex: 20%; /* Assign 50% width to each column */
+}
+
+input[type="text"] {
+    width: 20%; /* You might need to adjust this width according to your needs */
+}
+
+

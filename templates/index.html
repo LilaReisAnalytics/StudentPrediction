@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <title>STUDENT SUCCESS PREDICTION</title>
+    <style>
+        body{            
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            height: 110vh;
+            font-family: 'Arial', sans-serif;
+            color: #111111;
+            margin: 0;
+            display: flex;		            
+            justify-content: center;
+        }
+
+        h1, h2, h3 {
+           
+           color: #0054a6;
+           
+           
+        }        		
+		
+
+        form {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        label {
+            font-family: 'Arial', sans-serif;
+            color: #000000;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #0054a6;
+            color: white;
+            padding: 15px 20px;
+            margin: 15px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #111111;
+        }
+
+        #results {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 20px;
+        }
+
+        .input-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .input-container select {
+            flex: 1;
+            margin-left: 10px;
+        }
+		
+		img {
+            width: 100%; /* Adjust the width as needed */
+            max-width: 700px; /* Set a maximum width if desired */
+            height: auto; /* Maintain the image's aspect ratio */
+        }
+    </style>
+</head>
+
+	
+<body>
+    <img src="{{ url_for('static', filename='student.png') }}">
+    <form id="predictForm">
+	<h1 style="text-align: center;">STUDENT SUCCESS PREDICTION</h1>		
+    <h2 style="text-align: center;">GROUP 5 - NEURAL NETWORKS (SEC.002) </h2>
+	<br><br>
+        <h3 style="text-align: center;">INPUT FEATURE VALUES</h3>
+		
+		
+<!-- idependent Variable -->
+
+		
+<div class="input-container">        
+<div class="input-container">
+<label for="first_term_gpa">First Term GPA:</label>
+</div>		
+<div class="input-container">    
+    <input type="text" id="first_term_gpa" name="first_term_gpa" placeholder="Enter First Term GPA" required>
+</div>		
+</div>
+
+<div class="input-container">        
+<div class="input-container">
+<label for="second_term_gpa">Second Term GPA:</label>
+</div>		
+<div class="input-container">    
+    <input type="text" id="second_term_gpa" name="second_term_gpa" placeholder="Enter First Term GPA" required>
+</div>		
+</div>
+
+<div class="input-container">        
+<div class="input-container">
+<label for="fastTrack">FastTrack:</label>
+</div>
+<div class="input-container">    
+    <select id="fastTrack" name="fastTrack" required>
+        <option value="1.0">Yes</option>
+        <option value="0.0">No</option>        
+    </select>
+	<br><br>
+</div>	
+</div>				
+
+
+<div class="input-container">        
+<div class="input-container">
+<label for="coop">Coop:</label>
+</div>
+<div class="input-container">     
+    <select id="coop" name="coop" required>
+        <option value="1.0">Yes</option>
+        <option value="0.0">No</option>        
+    </select>
+	<br><br>
+</div>	
+</div>					
+				
+
+
+<div class="input-container">        
+<div class="input-container">
+<label for="residency">Residency:</label>
+</div>
+<div class="input-container">     
+    <select id="residency" name="residency" required>
+        <option value="1.0">Domestic</option>
+        <option value="0.0">International</option>        
+    </select>
+	<br><br>
+</div>	
+</div>				
+				
+				
+<div class="input-container">        
+<div class="input-container">
+<label for="mathScore">Math Score:</label>
+</div>				
+<div class="input-container">    
+    <input type="text" id="mathScore" name="mathScore" placeholder="Enter Math Score" required>
+</div>
+</div>
+				
+<div class="input-container">        
+<div class="input-container">
+<label for="firstLanguage">First Language:</label>
+</div>
+<div class="input-container">    
+    <select id="firstLanguage" name="firstLanguage" required>
+        <option value="1">English</option>
+        <option value="2">French</option>
+        <option value="3">Other</option>
+		<option value="4">Unknow</option>		
+    </select>
+	<br><br>
+</div>	
+</div> 			
+
+<div class="input-container">        
+<div class="input-container">
+<label for="funding">Funding:</label>
+</div>
+<div class="input-container">    
+    <select id="funding" name="funding" required>
+        <option value="1.0">Apprentice_PS</option>
+        <option value="2.0">GPOG_FT</option>
+        <option value="4.0">Intl Regular</option>
+		<option value="5.0">Intl Transfer</option>
+		<option value="8.0">Second Career Program</option>
+		<option value="9.0">Work Safety Insurance Board</option>
+    </select>
+	<br><br>
+</div>	
+</div>      
+        			
+<div class="input-container">        
+<div class="input-container">
+<label for="gender">Gender:</label>
+</div>
+<div class="input-container">     
+    <select id="gender" name="gender" required>
+        <option value="1.0">Famale</option>
+        <option value="2.0">Male</option>
+        <option value="3.0">Other</option>
+    </select>
+	<br><br>
+</div>	
+</div>
+				
+<div class="input-container">        
+<div class="input-container">
+<label for="previousEducation">Previous Education:</label>
+</div>
+<div class="input-container"> 	    
+    <select id="previousEducation" name="previousEducation" required>
+        <option value="0">High School</option>
+        <option value="1">PostSecondary</option>
+        <option value="2">Other</option>			
+    </select>
+	<br><br>
+</div>	
+</div> 				
+
+
+<div class="input-container">        
+<div class="input-container">
+<label for="ageGroup">Age Group:</label>
+</div>
+<div class="input-container">    
+    <select id="ageGroup" name="ageGroup" required>
+        <option value="1">0 to 18</option>
+        <option value="2">19 to 20</option>
+        <option value="3">21 to 25</option>
+        <option value="4">26 to 30</option>
+        <option value="5">31 to 35</option>
+        <option value="6">36 to 40</option>
+        <option value="7">41 to 50</option>
+        <option value="8">51+</option>        		
+    </select>
+	<br><br>
+</div>	
+</div> 	
+
+
+
+     
+<div class="input-container">
+<div class="input-container"> 	
+    <label for="englishGrade">English Grade:</label>
+</div>
+<div class="input-container">   	
+    <select id="englishGrade" name="englishGrade" required>
+        <option value="1" >Level-130</option>
+	    <option value="10">Level-131</option> 
+	    <option value="2" >Level-140</option>
+		<option value="3">Level-140</option> 
+		<option value="4" >Level-150</option>
+		<option value="5">Level-151</option> 
+		<option value="7" >Level-160</option>
+		<option value="8">Level-161</option> 
+		<option value="9">Level-170</option> 		
+    </select>
+	<br><br>
+</div>	
+</div> 							
+				
+<!-- Dependent Variable -->
+
+<div class="input-container">        
+<div class="input-container">
+<label for="firstYearPersistence">First Year Persistence:</label>
+</div>
+<div class="input-container">    
+    <select id="firstYearPersistence" name="firstYearPersistence" required>
+        <option value="0">No</option>
+        <option value="1">Yes</option>
+    </select>
+    <br><br>
+</div>
+</div>
+
+
+<button type="submit">PREDICT</button>
+    </form>
+<div id="results"></div>
+<script>
+	
+    document.getElementById('predictForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        // Create the data object to send in the request
+        var data = {
+            First_Term_Gpa: document.getElementById('first_term_gpa').value,
+            Second_Term_Gpa: document.getElementById('second_term_gpa').value,
+			FastTrack: document.getElementById('fastTrack').value,
+			Coop: document.getElementById('coop').value,
+            Residency: document.getElementById('residency').value,
+			Math_Score: document.getElementById('mathScore').value,
+			First_Language: document.getElementById('firstLanguage').value,
+			Funding: document.getElementById('funding').value,
+			Gender: document.getElementById('gender').value,
+			Previous_Education: document.getElementById('previousEducation').value,
+            Age_Group: document.getElementById('ageGroup').value,			
+            English_Grade: document.getElementById('englishGrade').value,          
+            First_Year_Persistence: document.getElementById('firstYearPersistence').value
+        };
+
+        // Create an XMLHttpRequest object
+        var xhr = new XMLHttpRequest();
+        // Set the request method and URL
+        xhr.open('POST', 'http://127.0.0.1:12411/predict', true);
+        // Set the Content-Type
+        xhr.setRequestHeader('Content-Type', 'application/json');
+
+        xhr.onload = function () {
+            if (xhr.status >= 200 && xhr.status < 400) {
+                // Get the JSON response
+                 var response = JSON.parse(xhr.responseText);
+            
+            // Check if the prediction is defined in the response
+            if (response.prediction !== undefined) {
+                // Create a formatted string to display the results
+                var resultsHTML = "<div style='font-family:Tahoma; color:#0054a6;'><h4>Results:</h4>";
+                resultsHTML += "<p><strong>First Year Persistence Prediction:</strong> " + response.prediction + "</p>";
+                resultsHTML += "</div>";
+                // Print the results to the results div
+                document.getElementById('results').innerHTML = resultsHTML;
+            } else {
+                // Handle the case when the prediction is not defined in the response
+                document.getElementById('results').innerHTML = "<p style='color:red;'>Error: Prediction not available</p>";
+            }
+            }
+        };
+        // Send the request with the JSON stringified data
+        xhr.send(JSON.stringify(data));
+    });
+</script>
+
+</body>
+
+</html>
